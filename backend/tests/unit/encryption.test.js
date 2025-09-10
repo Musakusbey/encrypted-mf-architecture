@@ -35,3 +35,4 @@ describe('Encryption Utils', () => {
         expect(token.length).toBe(64); // 32 bytes = 64 hex chars
     });
 });
+

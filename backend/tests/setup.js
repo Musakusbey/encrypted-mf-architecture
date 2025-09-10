@@ -21,3 +21,4 @@ process.env.SUPABASE_ANON_KEY = 'test-anon-key';
 
 // Global test timeout
 jest.setTimeout(10000);
+

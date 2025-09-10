@@ -28,3 +28,4 @@ describe("Frontend Encryption", () => {
     expect(true).toBe(true);
   });
 });
+
