@@ -173,29 +173,4 @@ Frontend'de "Test Araçları" → "Şifreleme Testi" bölümünü kullanın.
 2. `server.js`'e route'u ekleyin
 3. Gerekirse middleware ekleyin
 
-## 📝 Lisans
 
-Bu proje MIT lisansı altında lisanslanmıştır.
-
-## 🤝 Katkıda Bulunma
-
-1. Fork yapın
-2. Feature branch oluşturun (`git checkout -b feature/amazing-feature`)
-3. Commit yapın (`git commit -m 'Add amazing feature'`)
-4. Push yapın (`git push origin feature/amazing-feature`)
-5. Pull Request oluşturun
-
-## 📞 İletişim
-
-- **GitHub**: [@Musakusbey](https://github.com/Musakusbey)
-- **Email**: musa@example.com
-
-## 🙏 Teşekkürler
-
-- React ekibine
-- Supabase ekibine
-- Tüm açık kaynak katkıcılarına
-
----
-
-⭐ Bu projeyi beğendiyseniz yıldız vermeyi unutmayın!
