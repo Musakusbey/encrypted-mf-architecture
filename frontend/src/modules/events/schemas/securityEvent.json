@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "type": {
+      "type": "string",
+      "enum": [
+        "security.key.rotated",
+        "security.cert.expired",
+        "security.audit.log",
+        "security.replay.blocked"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+$"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "eventType": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "critical"]
+        },
+        "details": {
+          "type": "object"
+        },
+        "timestamp": {
+          "type": "number"
+        }
+      },
+      "required": ["eventType", "severity", "timestamp"]
+    },
+    "ts": {
+      "type": "number"
+    },
+    "sig": {
+      "type": "string",
+      "minLength": 64
+    }
+  },
+  "required": ["type", "version", "payload", "ts", "sig"]
+}

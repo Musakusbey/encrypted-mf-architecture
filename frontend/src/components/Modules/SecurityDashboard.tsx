@@ -284,49 +284,68 @@ const SecurityDashboard: React.FC = () => {
   }, []);
 
   const loadSecurityData = async () => {
-    // Mock security events
-    const mockEvents = [
-      {
-        id: "1",
-        type: "success",
-        message: "Kullanıcı başarıyla giriş yaptı",
-        time: "11:25:30",
-        module: "auth",
-      },
-      {
-        id: "2",
-        type: "warning",
-        message: "Yüksek CPU kullanımı tespit edildi",
-        time: "11:20:15",
-        module: "system",
-      },
-      {
-        id: "3",
-        type: "error",
-        message: "Geçersiz API isteği reddedildi",
-        time: "11:15:45",
-        module: "api",
-      },
-      {
-        id: "4",
-        type: "info",
-        message: "Anahtar rotasyonu tamamlandı",
-        time: "11:10:00",
-        module: "security",
-      },
-    ];
+    try {
+      // Gerçek API'den güvenlik verilerini al
+      const response = await apiService.get("/api/security/dashboard");
+      const data = response.data;
 
-    setSecurityEvents(mockEvents);
-    setKeyStats({
-      activeKeys: 3,
-      totalHistory: 12,
-      lastRotation: "2025-09-10 11:10:00",
-    });
-    setCertStats({
-      totalCerts: 4,
-      validCerts: 3,
-      expiredCerts: 1,
-    });
+      setSecurityEvents(data.securityEvents || []);
+      setKeyStats({
+        activeKeys: data.keyStats?.activeKeys || 0,
+        totalHistory: data.keyStats?.totalHistory || 0,
+        lastRotation: data.keyStats?.lastRotation || "Bilinmiyor",
+      });
+      setCertStats({
+        totalCerts: data.certStats?.totalCerts || 0,
+        validCerts: data.certStats?.validCerts || 0,
+        expiredCerts: data.certStats?.expiredCerts || 0,
+      });
+    } catch (error) {
+      console.error("Güvenlik verileri alınamadı:", error);
+      // Fallback mock data
+      const mockEvents = [
+        {
+          id: "1",
+          type: "success",
+          message: "Kullanıcı başarıyla giriş yaptı",
+          time: "11:25:30",
+          module: "auth",
+        },
+        {
+          id: "2",
+          type: "warning",
+          message: "Yüksek CPU kullanımı tespit edildi",
+          time: "11:20:15",
+          module: "system",
+        },
+        {
+          id: "3",
+          type: "error",
+          message: "Geçersiz API isteği reddedildi",
+          time: "11:15:45",
+          module: "api",
+        },
+        {
+          id: "4",
+          type: "info",
+          message: "Anahtar rotasyonu tamamlandı",
+          time: "11:10:00",
+          module: "security",
+        },
+      ];
+
+      setSecurityEvents(mockEvents);
+      setKeyStats({
+        activeKeys: 3,
+        totalHistory: 12,
+        lastRotation: "2025-09-10 11:10:00",
+      });
+      setCertStats({
+        totalCerts: 4,
+        validCerts: 3,
+        expiredCerts: 1,
+      });
+    }
   };
 
   const getEventIcon = (type: string) => {
